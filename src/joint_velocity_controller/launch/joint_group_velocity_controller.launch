@@ -1,13 +1,21 @@
 <?xml version="1.0" ?> 
 <launch> 
-  <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true"> 
-    <arg name="robot_ip" value="10.224.20.198"/> 
-    <arg name="load_gripper" value="false"/> 
-  </include>
+  <!-- Define robot IP, load gripper, and publication rate arguments -->
+  <arg name="robot_ip" value="10.224.20.198"/> 
+  <arg name="load_gripper" value="false"/> 
+  <!-- Define arm ID argument -->
   <arg name="arm_id" value="panda"/> 
+
+  <!-- Include the franka_control launch file and pass all arguments -->
+  <!--<include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true"> -->
+  <include file="$(find joint_velocity_controller)/launch/control_node.launch" pass_all_args="true">
+    <arg name="robot_ip" value="$(arg robot_ip)"/> 
+    <arg name="load_gripper" value="$(arg load_gripper)"/> 
+  </include>
   
-  <rosparam command="load" file="$(find joint_velocity_controller)/config/joint_group_velocity_controller.yaml" subst_value="true" /> 
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"  args="joint_group_velocity_controller"/>
-    
+  <!-- Load the joint group velocity controller parameters -->
+  <rosparam command="load" file="$(find joint_velocity_controller)/config/default.yaml" subst_value="true" /> 
   
+  <!-- Spawn the joint group velocity controller -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_group_velocity_controller"/>
 </launch>
