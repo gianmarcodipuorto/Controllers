@@ -1,0 +1,2 @@
+forward_joint_group_command_controller:joint_position_controller:joint_velocity_controller
+-DCATKIN_DEVEL_PREFIX=/home/student/Controllers/devel -DCMAKE_INSTALL_PREFIX=/home/student/Controllers/install -G Unix Makefiles

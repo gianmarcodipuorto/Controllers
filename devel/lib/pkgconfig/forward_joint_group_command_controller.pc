@@ -1,0 +1,8 @@
+prefix=/home/student/Controllers/devel
+
+Name: forward_joint_group_command_controller
+Description: Description of forward_joint_group_command_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

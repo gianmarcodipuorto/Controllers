@@ -1,0 +1,8 @@
+prefix=/home/student/Controllers/devel
+
+Name: joint_velocity_controller
+Description: Description of joint_velocity_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp franka_msgs
